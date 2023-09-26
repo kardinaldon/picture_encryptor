@@ -20,14 +20,15 @@ public class App {
             try {
                 byte[] file = fs.getFile(filePath);
                 byte[] encryptedFile = cs.makeAes(file, Cipher.ENCRYPT_MODE);
-                String savedEncryptedFile = fs.saveFile(encryptedFile, filePath + "encrypted_file.jpg");
+                String savedEncryptedFile = fs.saveFile(encryptedFile, filePath + "_encrypted_file.jpg");
                 byte[] decryptedFile = cs.makeAes(fs.getFile(savedEncryptedFile), Cipher.DECRYPT_MODE);
-                String savedDecryptedFile = fs.saveFile(decryptedFile, filePath + "decrypted_file.jpg");
+                String savedDecryptedFile = fs.saveFile(decryptedFile, filePath + "_decrypted_file.jpg");
                 System.out.println("file encryption/decryption completed successfully");
                 System.out.println("encrypted file - " + savedEncryptedFile);
                 System.out.println("decrypted file - " + savedDecryptedFile);
             } catch (IOException e) {
-                System.out.println("file not found");
+                System.out.println("file not found or could not be processed");
+                e.getCause();
             }
         }
     }

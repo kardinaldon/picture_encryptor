@@ -15,7 +15,7 @@ public class CryptoService {
             keyGenerator.init(256);
             this.secretKey = keyGenerator.generateKey();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            e.getCause();
         }
     }
     public byte[] makeAes(byte[] rawMessage, int cipherMode){
@@ -25,7 +25,7 @@ public class CryptoService {
             byte [] output = cipher.doFinal(rawMessage);
             return output;
         } catch (Exception e){
-            e.printStackTrace();
+            e.getCause();
             return new byte[0];
         }
     }
